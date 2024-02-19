@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Liens</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #linkContainer {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Gestion de Liens</h1>
+        <label for="codeInput">Entrez le code :</label>
+        <input type="text" id="codeInput">
+        <button onclick="afficherLiens()">Afficher Liens</button>
+
+        <div id="linkContainer"></div>
+
+        <script>
+            var liensCollectes = {};
+
+            function afficherLiens() {
+                var codeSaisi = document.getElementById('codeInput').value;
+                var linkContainer = document.getElementById('linkContainer');
+
+                if (liensCollectes.hasOwnProperty(codeSaisi)) {
+                    var lien = document.createElement('a');
+                    lien.href = liensCollectes[codeSaisi];
+                    lien.textContent = "Lien Collecté";
+                    lien.target = "_blank"; // Ouvre le lien dans un nouvel onglet
+                    linkContainer.innerHTML = '';
+                    linkContainer.appendChild(lien);
+                } else {
+                    alert('Code incorrect. Veuillez réessayer.');
+                }
+            }
+
+            liensCollectes['55463'] = 'https://www.youtube.com/watch?v=9RfVp-GhKfs&list=PLgEu9sW7OJc6MZvGd4bIbjhOMjYE2Pr_E';
+            liensCollectes['94719'] = 'https://www.youtube.com/watch?v=VsxlqmSDmBU&list=PLgEu9sW7OJc6MZvGd4bIbjhOMjYE2Pr_E&index=2';
+        </script>
+    </div>
+</body>
+</html>
+
